@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord - Group Chat That's All Fun & Games </title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    
+    <script>
+        tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+                Whitney:["Whitney"],
+                Ginto:["Ginto"],
+                ggSans:["ggSans"],
+        },
+            colors: {
+                clr:"#404EED",
+                dxb:"#070439",
+                lt:"#3C5DEB",
+                dark:"#3747FF",
+                light:"#6288FF",
+                },
+          }
+        },
+        plugins: [],
+        fontFamily:{
+            Whitney:["Whitney"],
+            Ginto:["Ginto"],
+            ggSans:["ggSans"],
+        },
+      }
+    </script>
+    
+    
+    
+    
+    <style>
+
+
+
+        /***************/
+        /*   Whitney   */
+        /***************/
+
+        @font-face {
+        font-family: Whitney;
+        font-weight: 300;
+        src: url(./fonts/Whitney/Whitney-300.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Whitney;
+        font-weight: 400;
+        src: url(./fonts/Whitney/Whitney-400.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Whitney;
+        font-weight: 500;
+        src: url(./fonts/Whitney/Whitney-500.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Whitney;
+        font-weight: 600;
+        src: url(./fonts/Whitney/Whitney-600.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Whitney;
+        font-weight: 700;
+        src: url(./fonts/Whitney/Whitney-700.woff) format("woff");
+        }
+
+        /***************/
+        /*    Ginto    */
+        /***************/
+
+        @font-face {
+        font-family: Ginto;
+        font-weight: 300;
+        src: url(./fonts/Ginto/Ginto-300.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Ginto;
+        font-weight: 400;
+        src: url(./fonts/Ginto/Ginto-400.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Ginto;
+        font-weight: 500;
+        src: url(./fonts/Ginto/Ginto-500.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Ginto;
+        src: url(./fonts/Ginto/Ginto-600.woff) format("woff");
+        font-weight: 600;
+        }
+
+        @font-face {
+        font-family: Ginto;
+        font-weight: 700;
+        src: url(./fonts/Ginto/Ginto-700.woff) format("woff");
+        }
+
+        /****************/
+        /* Ginto-Italic */
+        /****************/
+
+        @font-face {
+        font-family: Ginto;
+        font-weight: 300;
+        font-style: italic;
+        src: url(./fonts/Ginto/Ginto-300-italic.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Ginto;
+        font-weight: 400;
+        font-style: italic;
+        src: url(./fonts/Ginto/Ginto-400-italic.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Ginto;
+        font-weight: 500;
+        font-style: italic;
+        src: url(./fonts/Ginto/Ginto-500-italic.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Ginto;
+        font-weight: 600;
+        font-style: italic;
+        src: url(./fonts/Ginto/Ginto-600-italic.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: Ginto;
+        font-weight: 700;
+        font-style: italic;
+        src: url(./fonts/Ginto/Ginto-700-italic.woff) format("woff");
+        }
+
+        /**************/
+        /* Ginto-Nord */
+        /**************/
+
+        @font-face {
+        font-family: GintoNord;
+        font-weight: 500;
+        src: url(./fonts/Ginto-Nord/Ginto-Nord-500.woff2) format("woff2"),
+            url(./fonts/Ginto-Nord/Ginto-Nord-500.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: GintoNord;
+        font-weight: 600;
+        src: url(./fonts/Ginto-Nord/Ginto-Nord-600.woff2) format("woff2"),
+            url(./fonts/Ginto-Nord/Ginto-Nord-600.woff) format("woff");
+        }
+
+        @font-face {
+        font-family: GintoNord;
+        font-weight: 700;
+        src: url(./fonts/Ginto-Nord/Ginto-Nord-700.woff2) format("woff2"),
+            url(./fonts/Ginto-Nord/Ginto-Nord-700.woff) format("woff");
+        }
+
+        /***************/
+        /*   gg sans   */
+        /***************/
+        @font-face {
+        font-family: "ggSans";
+        font-weight: 400;
+        src: url(./fonts/gg-sans/ggsans-Normal.ttf);
+        }
+        @font-face {
+        font-family: "ggSans";
+        font-weight: 500;
+        src: url(./fonts/gg-sans/ggsans-Medium.ttf);
+        }
+        @font-face {
+        font-family: "ggSans";
+        font-weight: 600;
+        src: url(./fonts/gg-sans/ggsans-Semibold.ttf);
+        }
+        @font-face {
+        font-family: "ggSans";
+        font-weight: 700;
+        src: url(./fonts/gg-sans/ggsans-Bold.ttf);
+        }
+
+        .btn{
+            box-shadow: none;
+            transition: all;
+            transition-duration: 300ms;
+        }
+
+        .btn:hover{
+            box-shadow: 0px 4px 15px rgb(50, 50, 50);
+        }
+
+        .btn1:hover{
+            transform: translateY(-0.2rem);
+        }
+
+        .curve{
+            border-radius: 3.5rem;
+        }
+        .border-4{
+            border-width: 3px;
+        }
+        .card{
+            z-index: 50;
+        }
+
+        .pic{
+            z-index: 5;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wrapper">
+            <nav class="bg-dxb font-ggSans " > 
+                <div class="flex max-w-[1200px] mx-auto justify-between items-center h-[72px]">
+                    <a href="https://discord.com/"><img src="./images/logo.svg" width="125px" alt=""></a>
+                    <div>
+                        <ul class="flex text-white gap-10 font-semibold">
+                            <li class="hover:underline cursor-pointer"><a href="https://discord.com/download">Download</a></li>
+                            <li class="hover:underline cursor-pointer" ><a href="https://discord.com/nitro"> Nitro</a></li>
+                            <li class="hover:underline cursor-pointer"><a href="https://discord.com/servers"> Discover</a></li>
+                            <li class="hover:underline cursor-pointer"><a href="https://discord.com/safety"> Safety</a></li>
+                            <li class="hover:underline cursor-pointer"><a href="https://support.discord.com/hc">Support</a></li>
+                            <li class="hover:underline cursor-pointer"><a href="https://discord.com/blog">Blog</a></li>
+                            <li class="hover:underline cursor-pointer"><a href="https://discord.com/careers">Careers</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                       <a href="https://discord.com/channels/@me" target="_blank"> <button class="text-[14px] font-[ggSans] text-black font-bold transition-all duration-300 hover:text-clr bg-white py-2 px-3 rounded-full">
+                            Open Discord
+                        </button></a>
+                    </div>
+                </div>
+            </nav>
+
+            <section class="bg-gradient-to-b from-dxb to-lt pt-[150px] relative pb-4" >
+                
+
+
+                <div class="flex flex-col max-w-[1080px] mx-auto justify-center items-center relative ">
+                    <div class="flex items-center justify-start">
+                        <div class="w-[45%]">
+                            <div class="font-[GintoNord] text-left tracking-tight leading-tight text-[50px] drop-shadow-lg font-extrabold capitalize text-white z-[11]">GROUP CHAT THAT’S ALL FUN & GAMES</div>
+                            <div class="text-white z-[11] mx-auto text-[24px] pt-6 leading-8 text-left drop-shadow-sm shadow-black">Discord is great for playing games and chilling with friends, or even building a worldwide community. Customise your own space to talk, play, and hang out.</div>
+                        </div>
+                        <img class="absolute left-[400px] top-auto" width="800px" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/664daa37ea162cadf9603500_Art.webp" >
+                        
+                        
+                    </div>
+                    
+                    <div class="flex z-[11] pt-[11rem] space-x-5"> 
+                        <a href="https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64"><button class="flex items-center justify-evenly gap-3 z-[11] text-[20px] font-[ggSans] text-black font-medium group transition-all duration-300 hover:text-[#7b86ff] btn bg-white py-3 px-7 rounded-full">
+                            <i class="fa-solid fa-download text-black group-hover:text-[#7b86ff] transition-all duration-300 "></i> Download for Windows
+                        </button></a>
+
+                       <a href="https://discord.com/app"> <button class="z-[11] btn text-[20px] font-[ggSans] text-white font-semibold transition-all duration-300  bg-[#161CBB] py-3 px-7 rounded-full">
+                            Open Discord in your browser
+                        </button></a>
+
+                    </div>
+                
+                </div>
+
+            </section>
+
+
+            <section class="bg-gradient-to-t from-dxb to-lt pt-[270px] relative pb-4 min-h-screen" >
+                
+                  <div class="flex flex-col gap-[200px]">
+                    <!-- card 1-->
+                    <div class="mt-[100px] min-h-[600px] w-[1300px] mx-auto bg-white bg-opacity-15 backdrop-blur-3xl justify-between items-center flex py-4 px-4 curve border-4 border-white border-opacity-25">
+                        <!-- video -->
+                            <div class="w-[60%]">
+                                <video autoplay loop muted playsinline class="w-full h-full curve ">
+                                    <source src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/663b271d6f05c8c9e11f8d65_Discord%20Refresh%20Sound-MP4-transcode.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                  </video>
+                            </div>
+                        <!-- Text -->
+                            <div class="w-[40%]">
+                                <h1 class="text-white font-[GintoNord] tracking-tight leading-tight mx-16 text-[40px] font-extrabold">
+                                    MAKE YOUR GROUP CHATS MORE FUN
+                                </h1>
+                                <div class="text-white z-[11] text-[22px] pt-6 leading-9 text-left mx-16">
+                                    Use custom emoji, stickers, soundboard effects and more to add your personality to 
+                                    your voice, video, or text chat. Set your avatar and a custom status, and write your
+                                    own profile to show up in chat your way.
+                                </div>
+                            </div>
+
+                    </div>
+
+
+                    <!-- card2 -->
+                    <div class="mt-[100px] min-h-[600px] w-[1300px] mx-auto bg-white bg-opacity-15 backdrop-blur-3xl justify-between items-center flex py-4 px-4 curve border-4 border-white border-opacity-25">
+                        
+                        <!-- Text -->
+                            <div class="w-[40%]">
+                                <h1 class="text-white font-[GintoNord] tracking-tight leading-tight mx-16 text-[40px] font-extrabold">
+                                    STREAM LIKE YOU’RE IN THE SAME ROOM
+                                </h1>
+                                <div class="text-white z-[11] text-[22px] pt-6 leading-9 text-left mx-16">
+                                    High quality and low latency streaming makes it feel like you're hanging out on the couch with friends 
+                                    while playing a game, watching shows, looking at photos, or idk doing homework or something.
+                                </div>
+                            </div>
+
+                            <!-- video -->
+                            <div class="w-[60%]">
+                                <video autoplay loop muted playsinline class="w-full h-full curve ">
+                                    <source src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2%2F665434315cbc60da2d4c9684_Discord_Website_Refresh_Same%20Room_EN_V2-transcode.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                  </video>
+                            </div>
+
+                    </div>
+
+
+                    <!-- card3 -->
+                    <div class="mt-[100px] relative min-h-[600px] w-[1300px] mx-auto bg-white bg-opacity-15 backdrop-blur-3xl justify-between items-center flex py-4 px-4 curve border-4 border-white border-opacity-25">
+                        <!-- video -->
+                            <div class="w-[60%]">
+                                <video autoplay loop muted playsinline class="w-full h-full curve ">
+                                    <source src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/6638c6b04eff56a99c1e2d7d_Discord_Website_Refresh_Hop-In-transcode.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                  </video>
+                            </div>
+
+                            <img class="absolute left-[850px] bottom-[200px] scale-[40%] " src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6630f482123160b94617877a_Box%20(1).webp" alt="">
+                        <!-- Text -->
+                            <div class="w-[40%]">
+                                <h1 class="text-white font-[GintoNord] tracking-tight leading-tight mx-16 text-[40px] font-extrabold">
+                                    HOP IN WHEN YOU’RE FREE, NO NEED TO CALL
+                                </h1>
+                                <div class="text-white z-[11] text-[22px] pt-6 leading-9 text-left mx-16">
+                                    Easily hop in and out of voice or text chats without having to call or invite anyone, 
+                                    so your party chat lasts before, during, and after your game session.
+                                </div>
+                            </div>
+
+                    </div>
+
+                    <marquee class="bg-gradient-to-b py-6 from-dark to-light text-white font-[GintoNord] text-left tracking-tight leading-tight text-[65px] font-extrabold capitalize" behavior="s" direction="">
+                        <div class="flex gap-16 items-center">
+                            <div>
+                                CHAT
+                            </div>
+                            <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/665786b8a93285bff36e194e_discord-mark-white%202.webp" width="100px" height="21.38px" class="scale-50">
+                            <div>
+                                HANG OUT
+                            </div>
+                            <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/665786b8a93285bff36e194e_discord-mark-white%202.webp" width="28px" height="21.38px" >
+                            <div>
+                                PLAY
+                            </div>
+                            <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/665786b8a93285bff36e194e_discord-mark-white%202.webp" alt="">
+                            <div>
+                                TALK
+                            </div>
+                        </div>
+                    </marquee>
+                    
+
+                  </div>
+                  
+            </section>
+
+            <section class="bg-gradient-to-t to-dxb from-lt pt-[180px] relative pb-4 min-h-screen">
+                <div class="flex flex-col gap-[200px]">
+                    <!-- card4 -->
+                    <div class="mt-[100px] min-h-[600px] w-[1300px] mx-auto bg-white bg-opacity-15 backdrop-blur-3xl justify-between items-center flex py-4 px-4 curve border-4 border-white border-opacity-25">
+                        
+                        <!-- Text -->
+                            <div class="w-[40%]">
+                                <h1 class="text-white font-[GintoNord] tracking-tight leading-tight mx-16 text-[40px] font-extrabold">
+                                    SEE WHO'S AROUND TO CHILL
+                                </h1>
+                                <div class="text-white z-[11] text-[22px] pt-6 leading-9 text-left mx-16">
+                                    See who's around, playing games, or just hanging out. For supported games, you can see what 
+                                    modes or characters your friends are playing and directly join up.
+                                </div>
+                            </div>
+
+                            <!-- video -->
+                            <div class="w-[60%]">
+                                <video autoplay loop muted playsinline class="w-full h-full curve ">
+                                    <source src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/6638c7e8907412911166f683_Discord_Website_Refresh_See%20Who_s%20Around-transcode.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                  
+                                </video>
+                            </div>
+
+                    </div>
+                    
+                    <img class="absolute left-[700px] top-[490px] scale-[25%]" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/663361fab0387e34d5aae65e_Men%20(1).webp" alt="">
+
+                    <!-- card5 -->
+                    <div class="mt-[100px] relative min-h-[600px] w-[1300px] mx-auto bg-white bg-opacity-15 backdrop-blur-3xl justify-between items-center flex py-4 px-4 curve border-4 border-white border-opacity-25">
+                        <!-- video -->
+                            <div class="w-[60%]">
+                                <video autoplay loop muted playsinline class="w-full h-full curve ">
+                                    <source src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/66446078b3e738a7c1f85e35_Discord_Website_Refresh_Activities_03-transcode.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                  </video>
+                            </div>
+                            <img class="absolute left-[500px] bottom-[375px] scale-[25%] " src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6633621b9b5c83e2ee57271f_woman-top.webp" alt="">
+                        <!-- Text -->
+                            <div class="w-[40%]">
+                                <h1 class="text-white font-[GintoNord] uppercase tracking-tighter leading-tight mx-16 text-[38px] font-extrabold">
+                                    always have something to do together
+                                </h1>
+                                <div class="text-white z-[11] text-[22px] pt-6 leading-9 text-left mx-16">
+                                    Watch videos, play built-in games, listen to music, or just scroll together and spam memes.
+                                     Seamlessly text, call, video chat, and play games, all in one group chat.
+                                </div>
+                            </div>
+
+                    </div>
+
+
+                    <!-- card6 -->
+                    <div class="mt-[100px] min-h-[600px] w-[1300px] mx-auto bg-white bg-opacity-15 backdrop-blur-3xl justify-between items-center flex py-4 px-4 curve border-4 border-white border-opacity-25">
+                        
+                        <!-- Text -->
+                            <div class="w-[40%]">
+                                <h1 class="text-white uppercase font-[GintoNord] tracking-tighter leading-tight mx-16 text-[38px] font-extrabold">
+                                    wherever YOU GAME, HANG OUT HERE
+                                </h1>
+                                <div class="text-white z-[11] text-[22px] pt-6 leading-9 text-left mx-16">
+                                    On your PC, phone, or console, you can still hang out on Discord. Easily switch between 
+                                    devices and use tools to manage multiple group chats with friends.
+                                </div>
+                            </div>
+
+                            <!-- video -->
+                            <div class="w-[60%]">
+                                <video autoplay loop muted playsinline class="w-full h-full curve ">
+                                    <source src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6638c8e7cb756886cd8d61af_Discord_Website_Refresh_Platforms-transcode.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                  
+                                </video>
+                            </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="z-0 bg-gradient-to-t flex flex-col from-dxb to-lt pt-[180px] relative min-h-screen">
+                <h1 class="mt-20 text-white font-[GintoNord] uppercase tracking-tight text-center leading-tight mx-16 text-[50px] font-extrabold">
+                    YOU CAN'T SCROLL ANYMORE. <br> BETTER GO CHAT.
+                </h1>
+                <button class="flex mt-16 self-center items-center justify-evenly gap-3 z-[11] text-[20px] font-[ggSans] text-white font-semibold group transition-all duration-300 btn1 btn bg-[#626fff] hover:bg-[#8891F2] py-3 px-7 rounded-full">
+                    <i class="fa-solid fa-download text-white  transition-all duration-300 "></i> Download for Windows
+                </button>
+
+                <img class="pt-[80px]" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6658cc069d1eb1caf9426914_Footer-Art_cut-p-2000.webp" alt="">
+                <img class="absolute scale-50 left-[550px] -bottom-[120px]" src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/662fa569e650b7bdf2f5d8b4_WUMPUS_LEAN_MOUTH.webp" alt="">
+            </section>
+
+            <section class="bg-gradient-to-br flex flex-col from-[#797DC3] to-[#3C2D94] relative">
+                <div class="w-full h-1 bg-white bg-opacity-40 z-30"></div>
+
+                <div class="pt-[80px]">
+                    <div class="flex max-w-[1200px] mx-auto justify-evenly">
+                        <!-- col1 -->
+                        <div class="flex flex-col gap-10 w-[30%]">
+                            <div class="flex gap-2 items-center">
+                                <img class="h-[18px]" src="https://upload.wikimedia.org/wikipedia/commons/4/42/Flag_of_the_United_Kingdom.png" width="28px"> 
+                                <div class="text-white font-ggSans">English (UK)</div>
+                            </div>
+
+                            <div class="flex gap-6">
+                                <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/65a4fe4237b6a1c4fa714f76_x.svg" class="cursor-pointer">
+                                <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/65a4fe42d907d27f3dead7a0_instagram.svg" class="cursor-pointer">
+                                <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/65a4fe4173c1df8be608c8a2_facebook.svg" class="cursor-pointer">
+                                <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/65a4fe42d907d27f3dead7ad_youtube.svg" class="cursor-pointer">
+                                <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/65a4fe4152ae5860036dadf1_tiktok.svg" class="cursor-pointer">
+                            </div>
+
+                        </div>
+
+                        <!-- col2 -->
+                        <div class="flex flex-col w-[17.5%]">
+                            <h1 class="text-white font-semibold">Product</h1>
+                            <ul class="text-white pt-6 flex flex-col gap-2">
+                                <li class="hover:underline cursor-pointer">
+                                    Download
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Nitro
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Status
+                                    </li>
+                                <li class="hover:underline cursor-pointer">App Directory
+                                    </li>
+                                <li class="hover:underline cursor-pointer"> New Mobile Experience</li>
+                            </ul>
+                        </div>
+
+                        <!-- col3 -->
+                        <div class="flex flex-col w-[17.5%]">
+                            <h1 class="text-white font-semibold">Company</h1>
+                            <ul class="text-white pt-6 flex flex-col gap-2">
+                                <li class="hover:underline cursor-pointer">
+                                    About
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Jobs
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Brand
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Newsroom
+                                    </li>
+                                
+                            </ul>
+                        </div> 
+
+                        <!-- col4 -->
+                        <div class="flex flex-col w-[17.5%]">
+                            <h1 class="text-white font-semibold">Resources</h1>
+                            <ul class="text-white pt-6 flex flex-col gap-2">
+                                <li class="hover:underline cursor-pointer">College
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Support
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Safety
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Blog
+                                    </li>
+                                <li class="hover:underline cursor-pointer"> Feedback</li>
+                                <li class="hover:underline cursor-pointer"> Streamkit</li>
+                                <li class="hover:underline cursor-pointer"> Creators</li>
+                                <li class="hover:underline cursor-pointer"> Community</li>
+                                <li class="hover:underline cursor-pointer"> Developers</li>
+                                <li class="hover:underline cursor-pointer"> Gaming</li>
+                                <li class="hover:underline cursor-pointer"> Quests</li>
+                                <li class="hover:underline cursor-pointer"> Official Third-Party Merch</li>
+
+
+
+
+
+
+
+                            </ul>
+                        </div>
+
+                        <!-- col5 -->
+                        <div class="flex flex-col w-[17.5%]">
+                            <h1 class="text-white font-semibold">Policies</h1>
+                            <ul class="text-white pt-6 flex flex-col gap-2">
+                                <li class="hover:underline cursor-pointer">Terms
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Privacy
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Cookie Settings
+                                    </li>
+                                <li class="hover:underline cursor-pointer">Guidelines
+                                    </li>
+                                <li class="hover:underline cursor-pointer"> Acknowledgements</li>
+                                <li class="hover:underline cursor-pointer"> Licences</li>
+                                <li class="hover:underline cursor-pointer"> Creators</li>
+                                <li class="hover:underline cursor-pointer"> Company Information</li>
+    
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="w-[1200px] mx-auto h-[1px] mt-6 bg-white z-30"></div>
+
+                <div class="w-[1200px] pb-10 mx-auto flex justify-between pt-6">
+                    <img src="./images/logo.svg" alt="">
+                    <button class="z-[11] btn text-[14px] font-[ggSans] text-white font-semibold transition-all duration-300  bg-[#626fff] hover:bg-[#8891F2] py-1 px-3 rounded-full">
+                        Open Discord
+                    </button>
+
+                </div>
+
+            </section>
+    </div>
+    <script src="https://kit.fontawesome.com/082fc3605a.js" crossorigin="anonymous"></script>
+</body>
+</html>
